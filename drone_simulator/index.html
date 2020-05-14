@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>threejs - models</title>
+    <title>Final Project - OK</title>
 
     <style>
     	body{
@@ -17,6 +17,7 @@
     <script src="GLTFLoader.js"></script>
 
     <script>
+    var music = new Audio("sound/If_I_Had_a_Chicken.mp3");
 
     var player = { height:1.0}
     var renderer,
@@ -58,7 +59,7 @@
     scene.add(light2);
   
     //FOG
-  //  scene.fog=new THREE.FogExp2( 0xffffff, 0.01 );
+    // scene.fog=new THREE.FogExp2( 0xffffff, 0.01 );
 
     var loader = new THREE.GLTFLoader();
 
@@ -112,8 +113,6 @@
     // loader.load('objects/car/car3/scene.gltf', handle_car3);
 
 
-
-
     var mesh, bench_mesh, cloud_mesh, rocks_mesh;
 
     //load biasa
@@ -160,8 +159,6 @@
     }
 
 
-
- 
     // x makin kanan makin negatif
     // z makin depan makin negatif
    
@@ -324,47 +321,69 @@
         handle_load(gltf, -28, 0, -15, 1, mesh);
     }
 
-    var mouse = {x:0,y:0};
+    // var mouse = {x:0,y:0};
     var cameraMoves = {x:0,y:0,z:-0.1,move:false,speed:0.2};
 
 
     //RENDER LOOP
     render();
 
-    function mouseMove(e){
-        if (e.clientX>mouse.x) { camera.position.x += cameraMoves.speed; } else { camera.position.x += -cameraMoves.speed; }
-        if (e.clientY>mouse.y) { camera.position.y += -cameraMoves.speed; } else { camera.position.y += cameraMoves.speed; }
+    // function mouseMove(e){
+    //     if (e.clientX>mouse.x) { camera.position.x += cameraMoves.speed; } else { camera.position.x += -cameraMoves.speed; }
+    //     if (e.clientY>mouse.y) { camera.position.y += -cameraMoves.speed; } else { camera.position.y += cameraMoves.speed; }
 
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-    }
-    window.addEventListener('mousemove', mouseMove);
+    //     mouse.x = e.clientX;
+    //     mouse.y = e.clientY;
+    // }
+    // window.addEventListener('mousemove', mouseMove);
 
     var delta = 0;
     var prevTime = Date.now();
 
     function render() {
-
         var delta = 0.01;
+        var yawMove = 0.001;
         document.addEventListener('keydown',onDocumentKeyDown,false);
         function onDocumentKeyDown(event){
             event = event || window.event;
             var keycode = event.keyCode;
             switch(keycode){
-                case 37 :
+                // Case MOVE
+                case 65 : //A Left
                     camera.position.x = camera.position.x - delta;
                     break;
-                case 38 :
+                case 87 : //W Up
                     camera.position.z = camera.position.z - delta;
                     break;
-                case 39 :
+                case 68 : //D Right
                     camera.position.x = camera.position.x + delta;
                     break;
-                case 40 :
+                case 83 : //S Down
                     camera.position.z = camera.position.z + delta;
+                    break;
+                case 82 : //R Far
+                    camera.position.y = camera.position.y + delta;
+                    break;
+                case 70 : //F Near 
+                    camera.position.y = camera.position.y - delta;
+                    break;
+                // Case YAW
+                case 37 : //arrowLeft
+                    camera.rotation.y = camera.rotation.y + yawMove;
+                    break;
+                case 39 : //arrowRight
+                    camera.rotation.y = camera.rotation.y - yawMove;
+                    break;
+                // Case PITCH
+                case 38 : //arrowUp
+                    camera.rotation.x = camera.rotation.x + yawMove;
+                    break;
+                case 40 : //arrowDown
+                    camera.rotation.x = camera.rotation.x - yawMove;
                     break;
             }
             document.addEventListener('keyup',onDocumentKeyUp,false);
+            music.play();
         }
         function onDocumentKeyUp(event){
             document.removeEventListener('keydown',onDocumentKeyDown,false);
