@@ -316,17 +316,51 @@
         handle_load(gltf, -28, 0, -15, 1, mesh);
     }
 
+    var mouse = {x:0,y:0};
+    var cameraMoves = {x:0,y:0,z:-0.1,move:false,speed:0.2};
 
 
     //RENDER LOOP
     render();
+
+    function mouseMove(e){
+        if (e.clientX>mouse.x) { camera.position.x += cameraMoves.speed; } else { camera.position.x += -cameraMoves.speed; }
+        if (e.clientY>mouse.y) { camera.position.y += -cameraMoves.speed; } else { camera.position.y += cameraMoves.speed; }
+
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    }
+    window.addEventListener('mousemove', mouseMove);
 
     var delta = 0;
     var prevTime = Date.now();
 
     function render() {
 
-        delta += 0.1;
+        var delta = 0.01;
+        document.addEventListener('keydown',onDocumentKeyDown,false);
+        function onDocumentKeyDown(event){
+            event = event || window.event;
+            var keycode = event.keyCode;
+            switch(keycode){
+                case 37 :
+                    camera.position.x = camera.position.x - delta;
+                    break;
+                case 38 :
+                    camera.position.z = camera.position.z - delta;
+                    break;
+                case 39 :
+                    camera.position.x = camera.position.x + delta;
+                    break;
+                case 40 :
+                    camera.position.z = camera.position.z + delta;
+                    break;
+            }
+            document.addEventListener('keyup',onDocumentKeyUp,false);
+        }
+        function onDocumentKeyUp(event){
+            document.removeEventListener('keydown',onDocumentKeyDown,false);
+        }
         // if (mesh) mesh.rotation.y += 0.01;
         // if (mesh2) mesh2.rotation.y += 0.01;
         // if (mesh3) mesh3.rotation.y += 0.01;
