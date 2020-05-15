@@ -11,6 +11,10 @@
 </head>
 <body>
 
+    <div class="label">x: <span class="text" id="posx">0</span></div>
+    <div class="label">y: <span class="text" id="posy">0</span></div>
+    <div class="label">z: <span class="text" id="posz">0</span></div>
+
     <canvas id="myCanvas"></canvas>
 
     <script src="three.js"></script>
@@ -413,6 +417,12 @@ function road (x, y, z, ry, scx, scy) {
     var prevTime = Date.now();
 
     function render() {
+        posx = camera.position.x;
+        document.getElementById("posx").innerHTML = posx;
+        posx = camera.position.y;
+        document.getElementById("posy").innerHTML = posx;
+        posx = camera.position.z;
+        document.getElementById("posz").innerHTML = posx;
         var delta = 0.01;
         var yawMove = 0.001;
         document.addEventListener('keydown',onDocumentKeyDown,false);
