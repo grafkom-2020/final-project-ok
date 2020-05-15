@@ -142,7 +142,7 @@
     // loader.load('objects/car/car3/scene.gltf', handle_car3);
 
 
-    var mesh, bench_mesh, cloud_mesh, rocks_mesh;
+    var mesh, bench_mesh, cloud_mesh, rocks_mesh, car_mesh;
 
     //load biasa
     function handle_load(gltf, x, y, z,sc, mesh) {
@@ -193,21 +193,20 @@
 		scene.add( mesh );
     }
 
-
-function road (x, y, z, ry, scx, scy) {
-    var geometry = new THREE.PlaneGeometry( 6, 20, 0 );
-    var material = new THREE.MeshPhongMaterial( {color: 0x000000, side: THREE.DoubleSide} );
-    var plane2 = new THREE.Mesh( geometry, material );
-    plane2.rotation.x -= Math.PI / 2;
-    plane2.rotation.z  = ry
-    plane2.position.x = x;
-    plane2.position.y= y;
-    plane2.position.z = z;
-    plane2.scale.x = scx;
-    plane2.scale.y = scy;
-    plane2.receiveShadow = true;
-    scene.add( plane2 );
-}
+    function road (x, y, z, ry, scx, scy) {
+        var geometry = new THREE.PlaneGeometry( 6, 20, 0 );
+        var material = new THREE.MeshPhongMaterial( {color: 0x000000, side: THREE.DoubleSide} );
+        var plane2 = new THREE.Mesh( geometry, material );
+        plane2.rotation.x -= Math.PI / 2;
+        plane2.rotation.z  = ry
+        plane2.position.x = x;
+        plane2.position.y= y;
+        plane2.position.z = z;
+        plane2.scale.x = scx;
+        plane2.scale.y = scy;
+        plane2.receiveShadow = true;
+        scene.add( plane2 );
+    }
 
     road (-30, 0.08,  0, 0, 0.5, 5);
     road (-10, 0.08,  0, 0, 0.5, 5);
@@ -219,18 +218,26 @@ function road (x, y, z, ry, scx, scy) {
     road ( 0, 0.08,  30, Math.PI / 2, 0.5, 5);
 
 
-
-
-
-
     // car random
     function handle_car1(gltf) {
-        handle_load2(gltf, 10, -0.3, -8, 0, 0,  0.8, mesh);
+        console.log(gltf);
+        car_mesh = gltf.scene;
+        console.log(car_mesh.children[0]);
+        car_mesh.children[0].material = new THREE.MeshLambertMaterial();
+        car_mesh.scale.set(0.8, 0.8, 0.8);    
+        car_mesh.position.z = -8;
+        car_mesh.position.x = 10;
+        car_mesh.position.y = -0.3;
+        car_mesh.rotation.x = 0;
+        car_mesh.rotation.y = 0;
+        car_mesh.castShadow = true;
+        car_mesh.receiveShadow = true;
+		scene.add( car_mesh );
     }
 
 
 
-//komplek 1a
+    //komplek 1a
     function handle_build6(gltf) {
         handle_load2(gltf, -45, 0.2, -45, 0, 1.6, 0.00007, mesh);
     }
@@ -443,14 +450,14 @@ function road (x, y, z, ry, scx, scy) {
 
     var delta = 0;
     var prevTime = Date.now();
-
+    var mundur = 0;
     function render() {
         posx = camera.position.x;
         document.getElementById("posx").innerHTML = posx;
-        posx = camera.position.y;
-        document.getElementById("posy").innerHTML = posx;
-        posx = camera.position.z;
-        document.getElementById("posz").innerHTML = posx;
+        posy = camera.position.y;
+        document.getElementById("posy").innerHTML = posy;
+        posz = camera.position.z;
+        document.getElementById("posz").innerHTML = posz;
         var delta = 0.01;
         var yawMove = 0.001;
         document.addEventListener('keydown',onDocumentKeyDown,false);
@@ -502,6 +509,18 @@ function road (x, y, z, ry, scx, scy) {
         // if (mesh2) mesh2.rotation.y += 0.01;
         // if (mesh3) mesh3.rotation.y += 0.01;
         // if (bench_mesh) bench_mesh.rotation.y += 0.01;
+        if(car_mesh) {
+            if(car_mesh.position.z <= plane.position.z - 48) {
+                car_mesh.rotation.y = Math.PI;
+                mundur = 0;
+            }
+            if(car_mesh.position.z >= plane.position.z + 48) {
+                car_mesh.rotation.y = Math.PI;
+                mundur = 1;
+            }
+            if(mundur == 0) car_mesh.position.z += 0.1; 
+            else car_mesh.position.z -= 0.1;
+        }
     	renderer.render(scene, camera);
     	requestAnimationFrame(render);
     }
