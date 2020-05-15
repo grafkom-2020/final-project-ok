@@ -37,12 +37,14 @@
     renderer.setClearColor(0x55e7ff);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.BasicShadowMap;
 
     //CAMERA
     camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
     camera.position.set(0, 100, 50);
-  //  camera.position.set(50, 40, 30);
+    // camera.position.set(0, 36, 4);
     camera.lookAt(new THREE.Vector3(0,0,0)); 
 
     //SCENE
@@ -50,9 +52,10 @@
 
     //GROUND PLANE
     var planeGeometry = new THREE.PlaneGeometry(100,100,100,100); 
-    var planeMaterial = new THREE.MeshBasicMaterial({color: 0x2a6002, wireframe:false}); 
+    var planeMaterial = new THREE.MeshPhongMaterial({color: 0x2a6002, wireframe:false}); 
     plane = new THREE.Mesh(planeGeometry,planeMaterial);
     plane.rotation.x -= Math.PI / 2;
+    plane.receiveShadow = true;
     scene.add( plane );
 
     //LIGHTS
@@ -60,8 +63,26 @@
     scene.add(light);
 
     var light2 = new THREE.PointLight(0xffffff, 0.5);
+    light2.position.set(0, 100, 20);
+    light2.castShadow = true;
+    light2.shadow.camera.near = 0.1;
+    light2.shadow.camera.far = 25;
     scene.add(light2);
   
+    var spotLight = new THREE.SpotLight( 0xffffff );
+    spotLight.position.set( 0, 100, 10 );
+
+    spotLight.castShadow = true;
+
+    spotLight.shadow.mapSize.width = 1024;
+    spotLight.shadow.mapSize.height = 1024;
+
+    spotLight.shadow.camera.near = 0.1;
+    spotLight.shadow.camera.far = 50;
+    spotLight.shadow.camera.fov = 30;
+
+    scene.add( spotLight );
+
     //FOG
     // scene.fog=new THREE.FogExp2( 0xffffff, 0.01 );
 
@@ -133,6 +154,8 @@
         mesh.position.z = z;
         mesh.position.x = x;
         mesh.position.y = y;
+        mesh.castShadow = true;
+        mesh.receiveShadow = true;
 		scene.add( mesh );
     }
     
@@ -148,6 +171,8 @@
         mesh.position.y = y;
         mesh.rotation.x = xr;
         mesh.rotation.y = yr;
+        mesh.castShadow = true;
+        mesh.receiveShadow = true;
 		scene.add( mesh );
     }
 
@@ -163,13 +188,15 @@
         mesh.position.y = y;
         mesh.rotation.x = xr;
         mesh.rotation.y = yr;
+        mesh.castShadow = true;
+        mesh.receiveShadow = true;
 		scene.add( mesh );
     }
 
 
 function road (x, y, z, ry, scx, scy) {
-        var geometry = new THREE.PlaneGeometry( 6, 20, 0 );
-    var material = new THREE.MeshBasicMaterial( {color: 0x000000, side: THREE.DoubleSide} );
+    var geometry = new THREE.PlaneGeometry( 6, 20, 0 );
+    var material = new THREE.MeshPhongMaterial( {color: 0x000000, side: THREE.DoubleSide} );
     var plane2 = new THREE.Mesh( geometry, material );
     plane2.rotation.x -= Math.PI / 2;
     plane2.rotation.z  = ry
@@ -178,6 +205,7 @@ function road (x, y, z, ry, scx, scy) {
     plane2.position.z = z;
     plane2.scale.x = scx;
     plane2.scale.y = scy;
+    plane2.receiveShadow = true;
     scene.add( plane2 );
 }
 
