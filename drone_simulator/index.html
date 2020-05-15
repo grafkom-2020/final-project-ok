@@ -7,6 +7,11 @@
     		margin: 0;
     		overflow: hidden;
     	}
+        width: 100vw;
+        height: 100vh;
+        display: block;
+        background: url(objects/ba.jpeg) no-repeat center center;
+        background-size: cover;
     </style>
 </head>
 <body>
@@ -39,12 +44,13 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.BasicShadowMap;
+    renderer.backgroundMesh = true;
 
     //CAMERA
     camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-   // camera.position.set(-31, 0.3, -10);
-    camera.position.set(0, 36, 4);
+    camera.position.set(-31, 0.3, -10);
+ // camera.position.set(0, 36, 4);
     camera.lookAt(new THREE.Vector3(0,0,0)); 
 
     //SCENE
@@ -57,6 +63,12 @@
     plane.rotation.x -= Math.PI / 2;
     plane.receiveShadow = true;
     scene.add( plane );
+
+     // Load the background texture
+    const load = new THREE.TextureLoader();
+    const bgTexture = load.load('objects/ba.jpeg');
+    scene.background = bgTexture;
+    
 
     //LIGHTS
     var light = new THREE.AmbientLight(0xffffff, 0.5);
@@ -84,7 +96,7 @@
     scene.add( spotLight );
 
     //FOG
-    // scene.fog=new THREE.FogExp2( 0xffffff, 0.01 );
+     scene.fog=new THREE.FogExp2( 0xffffff, 0.01 );
 
     var loader = new THREE.GLTFLoader();
 
@@ -646,6 +658,17 @@
             if(mundur == 0) car_mesh.position.z += 0.1; 
             else car_mesh.position.z -= 0.1;
         }
+
+        // background
+        const canvasAspect = myCanvas.clientWidth / myCanvas.clientHeight;
+        const imageAspect = bgTexture.image ? bgTexture.image.width / bgTexture.image.height : 1;
+        const aspect = imageAspect / canvasAspect;
+        bgTexture.offset.x = aspect > 1 ? (1 - 1 / aspect) / 2 : 0;
+        bgTexture.repeat.x = aspect > 1 ? 1 / aspect : 1;
+        bgTexture.offset.y = aspect > 1 ? 0 : (1 - aspect) / 2;
+        bgTexture.repeat.y = aspect > 1 ? 1 : aspect;
+
+
     	renderer.render(scene, camera);
     	requestAnimationFrame(render);
     }
