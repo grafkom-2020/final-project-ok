@@ -43,7 +43,7 @@
     //CAMERA
     camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-    camera.position.set(0, 100, 50);
+    camera.position.set(-20, 6, 34);
     // camera.position.set(0, 36, 4);
     camera.lookAt(new THREE.Vector3(0,0,0)); 
 
@@ -52,7 +52,7 @@
 
     //GROUND PLANE
     var planeGeometry = new THREE.PlaneGeometry(100,100,100,100); 
-    var planeMaterial = new THREE.MeshPhongMaterial({color: 0x2a6002, wireframe:false}); 
+    var planeMaterial = new THREE.MeshPhongMaterial({color: 0xc0c0c0, wireframe:false}); 
     plane = new THREE.Mesh(planeGeometry,planeMaterial);
     plane.rotation.x -= Math.PI / 2;
     plane.receiveShadow = true;
@@ -138,8 +138,9 @@
     loader.load('objects/car/car1/scene.gltf', handle_car1);
     loader.load('objects/car/car1/scene.gltf', handle_car11);
     loader.load('objects/car/car1/scene.gltf', handle_car111);
-    // loader.load('objects/car/car2/scene.gltf', handle_car2);
-    // loader.load('objects/car/car3/scene.gltf', handle_car3);
+    loader.load('objects/car/cars.glb', handle_car2);
+    loader.load('objects/car/pemadam.glb', handle_car3);
+    loader.load('objects/car/offroadcar.glb', handle_car4);
 
 
     var mesh, bench_mesh, cloud_mesh, rocks_mesh, car_mesh;
@@ -195,7 +196,7 @@
 
     function road (x, y, z, ry, scx, scy) {
         var geometry = new THREE.PlaneGeometry( 6, 20, 0 );
-        var material = new THREE.MeshPhongMaterial( {color: 0x000000, side: THREE.DoubleSide} );
+        var material = new THREE.MeshPhongMaterial( {color: 0x202020, side: THREE.DoubleSide} );
         var plane2 = new THREE.Mesh( geometry, material );
         plane2.rotation.x -= Math.PI / 2;
         plane2.rotation.z  = ry
@@ -217,6 +218,55 @@
     road ( 0, 0.08,  10, Math.PI / 2, 0.5, 5);
     road ( 0, 0.08,  30, Math.PI / 2, 0.5, 5);
 
+    function ground (x, y, z, sc, a) {
+    var geometry = new THREE.PlaneGeometry( 18, 18, 18 );
+    var material = new THREE.MeshBasicMaterial( {color: a, side: THREE.DoubleSide} );
+    var plane3 = new THREE.Mesh( geometry, material );
+    plane3.rotation.x -= Math.PI / 2;
+    plane3.position.x = x;
+    plane3.position.y= y;
+    plane3.position.z = z;
+    plane3.scale.set(sc,sc,sc);
+    scene.add( plane3 );
+}
+
+ground(-40,  0.1, -40, 0.85, 0x2a6002 );
+ground(-40,  0.1, -20, 0.85, 0x2a6002 );
+ground(-40,  0.1,   0, 0.85, 0x2a6002 );
+ground(-40,  0.1,  20, 0.85, 0x2a6002 );
+ground(-40,  0.1,  40, 0.85, 0x2a6002 );
+ground(-20,  0.1, -40, 0.85, 0x2a6002 );
+ground(-20,  0.1, -20, 0.85, 0x2a6002 );
+ground(-20,  0.1,   0, 0.85, 0x2a6002 );
+ground(-20,  0.1,  20, 0.85, 0x2a6002 );
+ground(-20,  0.1,  40, 0.85, 0x2a6002 );
+ground(  0,  0.1, -40, 0.85, 0x2a6002 );
+ground(  0,  0.1, -20, 0.85, 0x2a6002 );
+ground(  0,  0.1,   0, 0.85, 0x2a6002 );
+ground(  0,  0.1,  20, 0.85, 0x2a6002 );
+ground(  0,  0.1,  40, 0.85, 0x2a6002 );
+ground( 20,  0.1, -40, 0.85, 0x2a6002 );
+ground( 20,  0.1, -20, 0.85, 0x2a6002 );
+ground( 20,  0.1,   0, 0.85, 0x2a6002 );
+ground( 20,  0.1,  20, 0.85, 0x2a6002 );
+ground( 20,  0.1,  40, 0.85, 0x2a6002 );
+ground( 40,  0.1, -40, 0.85, 0x2a6002 );
+ground( 40,  0.1, -20, 0.85, 0x2a6002 );
+ground( 40,  0.1,   0, 0.85, 0x2a6002 );
+ground( 40,  0.1,  20, 0.85, 0x2a6002 );
+ground( 40,  0.1,  40, 0.85, 0x2a6002 );
+
+
+
+    function handle_car2(gltf) {
+        handle_load2(gltf, -20, -1, 0, 0, 0,  0.6, mesh);
+    }
+    function handle_car3(gltf) {
+        handle_load2(gltf, -20, -1, 0, 0, 0,  0.6, mesh);
+    }
+    function handle_car4(gltf) {
+        handle_load2(gltf, -18, 1, 0, 0, 0,  0.008, mesh);
+    }
 
     // car random
     function handle_car1(gltf) {
@@ -227,14 +277,13 @@
         car_mesh.scale.set(0.8, 0.8, 0.8);    
         car_mesh.position.z = -8;
         car_mesh.position.x = 10;
-        car_mesh.position.y = -0.3;
+        car_mesh.position.y = 0;
         car_mesh.rotation.x = 0;
         car_mesh.rotation.y = 0;
         car_mesh.castShadow = true;
         car_mesh.receiveShadow = true;
 		scene.add( car_mesh );
     }
-
 
 
     //komplek 1a
@@ -277,7 +326,7 @@
 
 //komplek 1b
     function handle_builda11(gltf) {
-        handle_load3(gltf, -38, 0, -30, 0, 1.58, 0.0055, 0.006, 0.005, mesh);
+        handle_load3(gltf, -38, 0, -30, 0, 1.58, 0.005, 0.006, 0.004, mesh);
     }
 
 // Komplek 1c
@@ -347,7 +396,7 @@
         handle_load(gltf, -22, +0, -20, 2, mesh);
     }
     function handle_build22(gltf) {
-        handle_load2(gltf, 4, 0, -15, 0, -1.6,  0.025, mesh);
+        handle_load2(gltf, 4, 0, -15, 0, -Math.PI/2,  0.025, mesh);
     }
     function handle_build12(gltf) {
         handle_load3(gltf, -3, 0.01, -15, 0, -Math.PI/2, 0.25, 0.35, 0.25, mesh);
@@ -360,6 +409,15 @@
 // Komplek 3c
     function handle_tree8(gltf) {
         handle_load(gltf, -5, +0, -8, 2, mesh);
+    }
+    function handle_bench2(gltf) {
+        handle_load2(gltf, 0, +0.5, 0, 0, Math.PI, 1, bench_mesh);
+    }
+    function handle_rocks(gltf) {
+        handle_load(gltf, 0, +0, 0, 1, rocks_mesh);
+    }
+    function handle_bench(gltf) {
+        handle_load(gltf, 0, +0.5, 0, 1, bench_mesh);
     }
 // Komplek 3d
 // Komplek 3e
@@ -394,15 +452,7 @@
 // Komplek 4e
 
 // Komplek 5a
-    function handle_bench2(gltf) {
-        handle_load2(gltf, 43, +0.5, -46, 0, Math.PI, 1, bench_mesh);
-    }
-    function handle_rocks(gltf) {
-        handle_load(gltf, 33, +0, -35, 1, rocks_mesh);
-    }
-    function handle_bench(gltf) {
-        handle_load(gltf, 35, +0.5, -35, 1, bench_mesh);
-    }
+    
 // Komplek 5b
     function handle_tree7(gltf) {
         handle_load(gltf, 35, +0, -15, 0.7, mesh);
