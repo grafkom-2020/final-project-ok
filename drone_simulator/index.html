@@ -26,7 +26,7 @@
         <script src="GLTFLoader.js"></script>
 
         <script>
-    //  var music = new Audio("sound/If_I_Had_a_Chicken.mp3");
+        //var music = new Audio("sound/If_I_Had_a_Chicken.mp3");
 
         var player = { height:1.0}
         var renderer,
@@ -210,8 +210,7 @@
         loader.load('objects/car/offroadcar.glb', handle_car41);
         loader.load('objects/yulia/bus.glb', handle_bus);
         loader.load('objects/yulia/truk1.glb', handle_truk1);
-
-        
+        loader.load('objects/hospital/hospital.glb', handle_hospital);
         
 
         var mesh, bench_mesh, cloud_mesh, rocks_mesh, car_mesh, car_mesh2, car_mesh3, car_mesh4, car_mesh5;
@@ -683,6 +682,9 @@
     // Komplek 3e
       
     // Komplek 4a
+    function handle_hospital(gltf){
+            handle_load2(gltf, -2, 8, 18, 0, 0, 0.3, mesh);
+    }
     // Komplek 4b
     // Komplek 4c
     // Komplek 4d
