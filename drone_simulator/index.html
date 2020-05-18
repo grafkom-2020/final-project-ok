@@ -49,9 +49,9 @@
         //CAMERA
         camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-        // camera.position.set(-31, 0.3, -10);
+       //  camera.position.set(-20, 0.0099, 67.309);
         camera.position.set(0, 36, 82);
-        // camera.position.set(-38, 8.6, 60); //kamera lihat kura kura
+       //  camera.position.set(-28.76, 3.66, -11.4); //kamera lihat kura kura
         // camera.lookAt(new THREE.Vector3(-38, -5, 0)); 
         camera.lookAt(new THREE.Vector3(0,0,0)); 
 
@@ -98,7 +98,7 @@
         scene.add( spotLight );
 
         //FOG
-        scene.fog=new THREE.FogExp2( 0xffffff, 0.01 );
+     //   scene.fog=new THREE.FogExp2( 0xffffff, 0.01 );
 
         var loader = new THREE.GLTFLoader();
 
@@ -126,8 +126,12 @@
         loader.load('objects/glb/tree_sheinna1.glb', handle_tree2eef);
         loader.load('objects/glb/tree_sheinna1.glb', handle_tree2eeef);
         loader.load('objects/glb/tree_sheinna2.glb', handle_tree3);
+        loader.load('objects/glb/tree_sheinna2.glb', handle_tree31);
+        loader.load('objects/glb/tree_sheinna2.glb', handle_tree311);
+        loader.load('objects/glb/tree_sheinna2.glb', handle_tree3111);
         loader.load('objects/apple_tree/scene.gltf', handle_tree4);
         loader.load('objects/apple_tree/scene.gltf', handle_tree41);
+        loader.load('objects/apple_tree/scene.gltf', handle_tree411);
         loader.load('objects/pine_tree/scene.gltf', handle_tree5);
         loader.load('objects/pine_tree/scene.gltf', handle_tree51);
         loader.load('objects/pine_tree/scene.gltf', handle_tree511);
@@ -135,6 +139,7 @@
         loader.load('objects/simple_tree/scene.gltf', handle_tree6);
         loader.load('objects/simple_tree/scene.gltf', handle_tree61);
         loader.load('objects/simple_tree/scene.gltf', handle_tree611);
+        loader.load('objects/simple_tree/scene.gltf', handle_tree6111);
         loader.load('objects/simple_tree/scene.gltf', handle_tree611e);
         loader.load('objects/simple_tree/scene.gltf', handle_tree62);
         loader.load('objects/simple_tree/scene.gltf', handle_tree621);
@@ -163,6 +168,7 @@
         loader.load('objects/yulia/store.glb', handle_build1);
         loader.load('objects/yulia/store.glb', handle_build11);
         loader.load('objects/yulia/store3.glb', handle_build12);
+        loader.load('objects/yulia/store2.glb', handle_build13);
         loader.load('objects/yulia/building.glb', handle_build2);
         loader.load('objects/yulia/building.glb', handle_build21);
         loader.load('objects/yulia/building2.glb', handle_build22);
@@ -175,6 +181,7 @@
         loader.load('objects/yulia/gedung.glb', handle_build4111);
         loader.load('objects/yulia/gedung.glb', handle_build4111c);
         loader.load('objects/yulia/GasStation.glb', handle_build5);
+        loader.load('objects/yulia/GasStation2.glb', handle_build51);
         loader.load('objects/yulia/Apartment2.glb', handle_build6);
         loader.load('objects/yulia/Apartment2.glb', handle_build61);
         loader.load('objects/yulia/Apartment4.glb', handle_build8);
@@ -199,21 +206,31 @@
         loader.load('objects/sheinna/turtle/scene.gltf', handle_turtle8);
         loader.load('objects/sheinna/forest_pond/scene.gltf', handle_pond);
         loader.load('objects/sheinna/mosque/scene.gltf', handle_mosque);
+        loader.load('objects/hospital/hospital.glb', handle_hospital);
+        loader.load('objects/yulia/hotel.glb', handle_builda2);
+        loader.load('objects/yulia/cage.glb', handle_builda3);
+        loader.load('objects/yulia/air.glb', handle_builda4);
     
     
         loader.load('objects/car/car1/scene.gltf', handle_car1);
         loader.load('objects/car/car1/scene.gltf', handle_car11);
         loader.load('objects/car/car1/scene.gltf', handle_car111);
         loader.load('objects/car/cars.glb', handle_car2);
+        loader.load('objects/car/cars.glb', handle_car21);
+        loader.load('objects/car/cars.glb', handle_car211);
         loader.load('objects/car/pemadam.glb', handle_car3);
         loader.load('objects/car/offroadcar.glb', handle_car4);
         loader.load('objects/car/offroadcar.glb', handle_car41);
         loader.load('objects/yulia/bus.glb', handle_bus);
+        loader.load('objects/yulia/bus.glb', handle_bus1);
+        loader.load('objects/yulia/bus.glb', handle_bus11);
         loader.load('objects/yulia/truk1.glb', handle_truk1);
-        loader.load('objects/hospital/hospital.glb', handle_hospital);
+        loader.load('objects/yulia/polis.glb', handle_polis);
+
         
 
-        var mesh, bench_mesh, cloud_mesh, rocks_mesh, car_mesh, car_mesh2, car_mesh3, car_mesh4, car_mesh5;
+        var mesh, bench_mesh, cloud_mesh, rocks_mesh;
+        var car_mesh, car_mesh2, car_mesh3, car_mesh4, car_mesh5, car_mesh6, car_mesh7, car_mesh8;
 
         //load biasa
         function handle_load(gltf, x, y, z,sc, mesh) {
@@ -248,22 +265,23 @@
         }
 
         //ada scale x,y,z
-        function handle_load3(gltf, x, y, z,xr, yr, zr, sca, scb, scc, mesh) {
-            console.log(gltf);
-            mesh = gltf.scene;
-            console.log(mesh.children[0]);
-            mesh.children[0].material = new THREE.MeshLambertMaterial();
-            mesh.scale.set(sca, scb, scc);    
-            mesh.position.z = z;
-            mesh.position.x = x;
-            mesh.position.y = y;
-            mesh.rotation.x = xr;
-            mesh.rotation.y = yr;
-            mesh.rotation.y = yr;
-            mesh.castShadow = true;
-            mesh.receiveShadow = true;
-            scene.add( mesh );
-        }
+
+        function handle_load3(gltf, x, y, z,xr, yr,zr ,sca,scb,scc, mesh) {
+        console.log(gltf);
+        mesh = gltf.scene;
+        console.log(mesh.children[0]);
+        mesh.children[0].material = new THREE.MeshLambertMaterial();
+        mesh.scale.set(sca, scb, scc);    
+        mesh.position.z = z;
+        mesh.position.x = x;
+        mesh.position.y = y;
+        mesh.rotation.x = xr;
+        mesh.rotation.y = yr;
+        mesh.rotation.z = zr;
+        mesh.castShadow = true;
+        mesh.receiveShadow = true;
+		scene.add( mesh );
+    }
         
         function road (x, y, z, ry, scx, scy) {
             var geometry = new THREE.PlaneGeometry( 6, 20, 0 );
@@ -292,8 +310,10 @@
         road ( 0, 0.08,  30, Math.PI / 2, 0.5, 5);
         road ( 0, 0.08,  -50, Math.PI / 2, 0.5, 5);
         road ( 0, 0.08,  50, Math.PI / 2, 0.5, 5);
+
+
         
-        function ground (x, y, z, sc, a) {
+        function ground (x, y, z, sca, scb, scc, a) {
             var geometry = new THREE.PlaneGeometry( 18, 18, 18 );
             var material = new THREE.MeshBasicMaterial( {color: a, side: THREE.DoubleSide} );
             var plane3 = new THREE.Mesh( geometry, material );
@@ -301,35 +321,36 @@
             plane3.position.x = x;
             plane3.position.y= y;
             plane3.position.z = z;
-            plane3.scale.set(sc,sc,sc);
+            plane3.scale.set(sca,scb,scc);
             scene.add( plane3 );
         }
 
-        ground(-40,  0.1, -40, 0.85, 0x2a6002 );
-        ground(-40,  0.1, -20, 0.85, 0x2949494 );
-        ground(-40,  0.1,   0, 0.85, 0x2a6002 );
-        ground(-40,  0.1,  20, 0.85, 0x2a6002 );
-        ground(-40,  0.1,  40, 0.85, 0x0bc9d6 );
-        ground(-20,  0.1, -40, 0.85, 0x949494 );
-        ground(-20,  0.1, -20, 0.85, 0x2a6002 );
-        ground(-20,  0.1,   0, 0.85, 0x2a6002 );
-        ground(-20,  0.1,  20, 0.85, 0x2a6002 );
-        ground(-20,  0.1,  40, 0.85, 0x2a6002 );
-        ground(  0,  0.1, -40, 0.85, 0x2a6002 );
-        ground(  0,  0.1, -20, 0.85, 0x2a6002 );
-        ground(  0,  0.1,   0, 0.85, 0x2a6002 );
-        ground(  0,  0.1,  20, 0.85, 0x2a6002 );
-        ground(  0,  0.1,  40, 0.85, 0x2a6002 );
-        ground( 20,  0.1, -40, 0.85, 0x2a6002 );
-        ground( 20,  0.1, -20, 0.85, 0x2a6002 );
-        ground( 20,  0.1,   0, 0.85, 0x2a6002 );
-        ground( 20,  0.1,  20, 0.85, 0x2a6002 );
-        ground( 20,  0.1,  40, 0.85, 0x2a6002 );
-        ground( 40,  0.1, -40, 0.85, 0x2a6002 );
-        ground( 40,  0.1, -20, 0.85, 0x2a6002 );
-        ground( 40,  0.1,   0, 0.85, 0x2a6002 );
-        ground( 40,  0.1,  20, 0.85, 0x2a6002 );
-        ground( 40,  0.1,  40, 0.85, 0x2a6002 );
+        ground(-40,  0.1, -40, 0.85, 0.85, 0.85, 0x2a6002 );
+        ground(-40,  0.1, -20, 0.85, 0.85, 0.85, 0x2949494 );
+        ground(-40,  0.1,   0, 0.85, 0.85, 0.85, 0x2949494 );
+        ground(-40,  0.1,  20, 0.85, 0.85, 0.85, 0xE6D66C );
+        ground(-40,  0.1,  40, 0.85, 0.85, 0.85, 0x0bc9d6 );
+        ground(-20,  0.1, -40, 0.85, 0.85, 0.85, 0x949494 );
+        ground(-20,  0.1, -20, 0.85, 0.85, 0.85, 0x2a6002 );
+        ground(-20,  0.1,   0, 0.85, 0.85, 0.85, 0x2a6002 );
+        ground(-20,  0.1,  20, 0.85, 0.85, 0.85, 0x2a6002 );
+        ground(-20,  0.1,  40, 0.85, 0.85, 0.85, 0x2a6002 );
+        ground(  0,  0.1, -40, 0.85, 0.85, 0.85, 0x2a6002 );
+        ground(  0,  0.1, -20, 0.85, 0.85, 0.85, 0x2a6002 );
+        ground(  0,  0.1,   0, 0.85, 0.85, 0.85, 0x2a6002 );
+        ground(  0,  0.1,  20, 0.85, 0.85, 0.85, 0x2a6002 );
+        ground(  0,  0.1,  40, 0.85, 0.85, 0.85, 0x8A6A29 );
+        ground( 20,  0.1, -40, 0.85, 0.85, 0.85, 0x2a6002 );
+        ground( 20,  0.1, -20, 0.85, 0.85, 0.85, 0x2a6002 );
+        ground( 20,  0.1,   0, 0.85, 0.85, 0.85, 0x2a6002 );
+        ground( 20,  0.1,  20, 0.85, 0.85, 0.85, 0x2a6002 );
+        ground( 20,  0.1,  40, 0.85, 0.85, 0.85, 0x2949494 );
+        ground( 40,  0.1, -40, 0.85, 0.85, 0.85, 0x2a6002 );
+        ground( 40,  0.1, -20, 0.85, 0.85, 0.85, 0x2a6002 );
+        ground( 40,  0.1,   0, 0.85, 0.85, 0.85, 0x2a6002 );
+        ground( 40,  0.1,  20, 0.85, 0.85, 0.85, 0x2a6002 );
+        ground( 40,  0.1,  40, 0.85, 0.85, 0.85, 0x2a6002 );
+
         
 
         
@@ -417,10 +438,50 @@
             scene.add( car_mesh5 );
         }
         function handle_bus(gltf) {
-            handle_load(gltf, 0, 27.7, -10, 100, mesh);
+            console.log(gltf);
+            car_mesh6 = gltf.scene;
+            console.log(car_mesh6.children[0]);
+            car_mesh6.children[0].material = new THREE.MeshLambertMaterial();
+            car_mesh6.scale.set(98, 98, 98);
+            car_mesh6.position.x = 20;
+            car_mesh6.position.y = 27;
+            car_mesh6.position.z = -12;
+            car_mesh6.rotation.x = 0;
+            car_mesh6.rotation.y = 0;
+            car_mesh6.castShadow = true;
+            car_mesh6.receiveShadow = true;
+            scene.add( car_mesh6 );
         }
         function handle_truk1(gltf) {
-            handle_load(gltf, 0, 27.7, -32, 99, mesh);
+            console.log(gltf);
+            car_mesh7 = gltf.scene;
+            console.log(car_mesh7.children[0]);
+            car_mesh7.children[0].material = new THREE.MeshLambertMaterial();
+            car_mesh7.scale.set(98, 98, 98);
+            car_mesh7.position.x = 0;
+            car_mesh7.position.y = 27;
+            car_mesh7.position.z = -32;
+            car_mesh7.rotation.x = 0;
+            car_mesh7.rotation.y = 0;
+            car_mesh7.castShadow = true;
+            car_mesh7.receiveShadow = true;
+            scene.add( car_mesh7 );
+        }
+
+        function handle_polis(gltf) {
+            console.log(gltf);
+            car_mesh8 = gltf.scene;
+            console.log(car_mesh8.children[0]);
+            car_mesh8.children[0].material = new THREE.MeshLambertMaterial();
+            car_mesh8.scale.set(0.008, 0.008, 0.008);
+            car_mesh8.position.x = -26.5;
+            car_mesh8.position.y = -2;
+            car_mesh8.position.z = -30;
+            car_mesh8.rotation.x = 0;
+            car_mesh8.rotation.y = Math.PI/2;
+            car_mesh8.castShadow = true;
+            car_mesh8.receiveShadow = true;
+            scene.add( car_mesh8 );
         }
 
 
@@ -469,6 +530,18 @@
         }
 
     // Komplek 1c
+        function handle_build51(gltf) {
+            handle_load2(gltf,-43 , 0, 0, 0, Math.PI, 0.005, mesh);
+        }
+        function handle_bus1(gltf) {
+            handle_load3(gltf, -55, 27, -38, 0, 0, 0, 98, 98, 98, mesh);
+        }
+        function handle_bus11(gltf) {
+            handle_load3(gltf, -55, 27, -41, 0, 0, 0, 98, 98, 98, mesh);
+        }
+        function handle_tree6111(gltf) {
+            handle_load2(gltf, -45, +0, 5, 0, Math.PI, 0.5, mesh);
+        }
     
     // Komplek 1d
     function handle_tree2(gltf) {
@@ -496,7 +569,7 @@
             handle_load(gltf, -34.5, 0, 46-20, 1, mesh);
         }
         function handle_zoo(gltf) {
-            handle_load2(gltf, -40, +0, 40-20, 0, 3 * Math.PI/2, 0.15, mesh);
+            handle_load2(gltf, -40, +0, 40-20, 0, 3 * Math.PI/2, 0.13, mesh);
         }
         function handle_fence(gltf) {
             handle_load2(gltf, -17.5, -1, 101-20, 0, 0, 0.3, mesh);
@@ -622,9 +695,24 @@
             handle_load(gltf, -20, +0, 0, 1, rocks_mesh);
         }
     // Komplek 2d
+    function handle_builda2(gltf) {
+        handle_load3(gltf, -20, -0.15, 28, Math.PI/11.4,Math.PI, Math.PI/6.8, 50, 50, 50, mesh);
+    }
+    function handle_tree411(gltf) {
+        handle_load(gltf, -35, 0, 28, 1.5, mesh);
+    }
+    ground( -20,  0.35,  18, 0.7, 0.4, 0.4, 0x0FB3EF );
+    ground( -20,  0.3,  18, 0.8, 0.5, 0.4, 0x2949494 );
+
     // Komplek 2e
+    function handle_build13(gltf) {
+            handle_load3(gltf, -20, 0.3, 40, 0, -Math.PI/2, 0, 0.25, 0.35, 0.25, mesh);
+        }
+        ground( -20,  0.2,  40, 0.6, 0.6, 0.1, 0x2F4F4F );
         
     // Komplek 3a
+
+
 
     // komplek 3b
         //gas station
@@ -679,14 +767,41 @@
         } 
         
     // Komplek 3d
+    function handle_hospital(gltf){
+            handle_load2(gltf, -2, 5, 20, 0, 0, 0.2, mesh);
+    }
+    function handle_car21(gltf) {
+            handle_load(gltf, 2, -1.3, 25, 0.5, mesh);
+        }
+    function handle_car211(gltf) {
+        handle_load(gltf, 4, -1.3, 25, 0.5, mesh);
+    }
+
     // Komplek 3e
+    function handle_builda3(gltf) {
+        handle_load2(gltf, 7.4, 2, 10, -0.03, 0, 120, mesh);
+    }
+    ground(  0,  0.3,  40, 0.7, 0.5, 0.4, 0x2a6002 );
       
     // Komplek 4a
-    function handle_hospital(gltf){
-            handle_load2(gltf, -2, 8, 18, 0, 0, 0.3, mesh);
-    }
     // Komplek 4b
     // Komplek 4c
+    function handle_builda4(gltf) {
+            handle_load(gltf, 24, 0, -3, 0.017, mesh);
+        }
+        function handle_tree3(gltf) {
+            handle_load(gltf, 15, +0, 5, 1, mesh);
+        }
+        function handle_tree31(gltf) {
+            handle_load(gltf, 15, +0, -5, 1, mesh);
+        }
+        function handle_tree311(gltf) {
+            handle_load(gltf, 25, +0, 5, 1, mesh);
+        }
+        function handle_tree3111(gltf) {
+            handle_load(gltf, 25, +0, -5, 1, mesh);
+        }
+
     // Komplek 4d
         function handle_build81(gltf) {
             handle_load2(gltf, 25, 0.3, 15, 0, 0, 0.00006, mesh);
@@ -729,9 +844,6 @@
             handle_load(gltf, 35, +0, -15, 0.7, mesh);
         } 
     // Komplek 5c
-        function handle_tree3(gltf) {
-            handle_load(gltf, 35, +0, 5, 1, mesh);
-        }
     // Komplek 5d
         function handle_mosque(gltf) {
             handle_load2(gltf, 39.5, 0.5, 20, 0, 0, 0.2, mesh);
@@ -789,7 +901,7 @@
 
         var delta = 0;
         var prevTime = Date.now();
-        var mundur = 0, mundur2 = 0, mundur3 = 0, mundur4 = 0, mundur5 = 1;
+        var mundur = 0, mundur2 = 0, mundur3 = 0, mundur4 = 0, mundur5 = 1, mundur6 = 1, mundur7 = 0 ,  mundur8= 0;
         function render() {
             posx = camera.position.x;
             document.getElementById("posx").innerHTML = posx;
@@ -911,6 +1023,45 @@
                 }
                 if(mundur5 == 0) car_mesh5.position.x += 0.2; 
                 else car_mesh5.position.x -= 0.2;
+            }
+
+            if(car_mesh6) {
+                if(car_mesh6.position.x <= plane.position.x - 65) {
+                    car_mesh6.position.y = -1000;
+                    mundur6 = 0;
+                }
+                if(car_mesh6.position.x >= plane.position.x +20) {
+                    car_mesh6.position.y = 27;
+                    mundur6 = 1;
+                }
+                if(mundur6 == 0) car_mesh6.position.x += 10; 
+                else car_mesh6.position.x -= 0.2;
+            }
+
+            if(car_mesh7) {
+                if(car_mesh7.position.x <= plane.position.x - 60) {
+                    car_mesh7.position.y = 27.5;
+                    mundur7 = 0;
+                }
+                if(car_mesh7.position.x >= plane.position.x + 28) {
+                    car_mesh7.position.y = -1000;
+                    mundur7 = 1;
+                }
+                if(mundur7 == 0) car_mesh7.position.x += 0.2; 
+                else car_mesh7.position.x -= 10;
+            }
+
+            if(car_mesh8) {
+                if(car_mesh8.position.x <= plane.position.x - 48) {
+                    car_mesh8.position.y = -2;
+                    mundur8 = 0;
+                }
+                if(car_mesh8.position.x >= plane.position.x + 48) {
+                    car_mesh8.position.y = -1000;
+                    mundur8 = 1;
+                }
+                if(mundur8 == 0) car_mesh8.position.x += 0.2; 
+                else car_mesh8.position.x -= 10;
             }
             // background
             const canvasAspect = myCanvas.clientWidth / myCanvas.clientHeight;
