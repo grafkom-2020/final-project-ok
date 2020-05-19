@@ -227,7 +227,10 @@
         loader.load('objects/yulia/truk1.glb', handle_truk1);
         loader.load('objects/yulia/polis.glb', handle_polis);
 
-        
+        loader.load('objects/yulia/Apartment2.glb', handle_build61_edit);
+        loader.load('objects/yulia/Apartment4.glb', handle_build8_edit);
+        loader.load('objects/yulia/store.glb', handle_build11_edit);
+        loader.load('objects/hospital/hospital.glb', handle_hospital_edit);
 
         var mesh, bench_mesh, cloud_mesh, rocks_mesh;
         var car_mesh, car_mesh2, car_mesh3, car_mesh4, car_mesh5, car_mesh6, car_mesh7, car_mesh8;
@@ -711,7 +714,9 @@
         ground( -20,  0.2,  40, 0.6, 0.6, 0.1, 0x2F4F4F );
         
     // Komplek 3a
-
+    function handle_build3(gltf) {
+            handle_load2(gltf, 40, 0.2, 0, 0, Math.PI/2 , 0.0001, mesh);
+        }
 
 
     // komplek 3b
@@ -825,6 +830,19 @@
             handle_load(gltf, 21.5, +0, 23, 3, mesh);
         }
 
+        //edit plus
+        function handle_build61_edit(gltf) {
+            handle_load2(gltf, 20, 0.3, -20, 0, Math.PI, 0.0001, mesh);
+        }
+        function handle_build8_edit(gltf) {
+            handle_load2(gltf, 0, 0.2, -40, 0, 1.6, 0.0001, mesh);
+        }
+        function handle_build11_edit(gltf) {
+            handle_load2(gltf, 20, 0, -40, 0, Math.PI/2, 0.42, mesh);
+        }
+        function handle_hospital_edit(gltf){
+            handle_load2(gltf, 40, 5, -20, 0, 0, 0.2, mesh);
+        }
 
     // Komplek 4e
         function handle_builda112(gltf) {
@@ -833,6 +851,7 @@
         function handle_tree611e(gltf) {
             handle_load2(gltf, 35-13, +0, 58-16,0, Math.PI, 0.4, mesh);
         }
+        
 
     // Komplek 5a
     
