@@ -30,7 +30,7 @@
         <script src="GLTFLoader.js"></script>
 
         <script>
-        //var music = new Audio("sound/If_I_Had_a_Chicken.mp3");
+        var music = new Audio("sound/If_I_Had_a_Chicken.mp3");
 
         var player = { height:1.0}
         var renderer,
@@ -103,7 +103,7 @@
         scene.add( spotLight );
 
         //FOG
-     //   scene.fog=new THREE.FogExp2( 0xffffff, 0.01 );
+        scene.fog=new THREE.FogExp2( 0xffffff, 0.01 );
 
         var loader = new THREE.GLTFLoader();
 
