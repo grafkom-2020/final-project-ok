@@ -164,7 +164,25 @@
         loader.load('objects/bench/scene.gltf', handle_bench2222);
         loader.load('objects/bench/scene.gltf', handle_bench22222);
         loader.load('objects/rocks/scene.gltf', handle_rocks);
-
+        loader.load('objects/yulia/traffic.glb', handle_traffic);
+        loader.load('objects/yulia/traffic.glb', handle_traffic1);
+        loader.load('objects/yulia/traffic.glb', handle_traffic2);
+        loader.load('objects/yulia/traffic.glb', handle_traffic3);
+        loader.load('objects/yulia/traffic.glb', handle_traffic4);
+        loader.load('objects/yulia/traffic.glb', handle_traffic5);
+        loader.load('objects/yulia/traffic.glb', handle_traffic6);
+        loader.load('objects/yulia/traffic.glb', handle_traffic7);
+        loader.load('objects/yulia/traffic.glb', handle_traffic8);
+        loader.load('objects/yulia/traffic.glb', handle_traffic9);
+        loader.load('objects/yulia/traffic.glb', handle_traffic10);
+        loader.load('objects/yulia/traffic.glb', handle_traffic11);
+        loader.load('objects/yulia/traffic.glb', handle_traffic111);
+        loader.load('objects/yulia/traffic.glb', handle_traffic1111);
+        loader.load('objects/yulia/traffic.glb', handle_traffic11111);
+        loader.load('objects/yulia/traffic.glb', handle_traffic111111);
+        
+        
+        
         loader.load('objects/yulia/store.glb', handle_build1);
         loader.load('objects/yulia/store.glb', handle_build11);
         loader.load('objects/yulia/store3.glb', handle_build12);
@@ -235,6 +253,10 @@
         var mesh, bench_mesh, cloud_mesh, rocks_mesh;
         var car_mesh, car_mesh2, car_mesh3, car_mesh4, car_mesh5, car_mesh6, car_mesh7, car_mesh8;
 
+        
+        
+        
+        
         //load biasa
         function handle_load(gltf, x, y, z,sc, mesh) {
             console.log(gltf);
@@ -268,12 +290,12 @@
         }
 
         //ada scale x,y,z
-
+        
         function handle_load3(gltf, x, y, z,xr, yr,zr ,sca,scb,scc, mesh) {
-        console.log(gltf);
-        mesh = gltf.scene;
-        console.log(mesh.children[0]);
-        mesh.children[0].material = new THREE.MeshLambertMaterial();
+            console.log(gltf);
+            mesh = gltf.scene;
+            console.log(mesh.children[0]);
+            mesh.children[0].material = new THREE.MeshLambertMaterial();
         mesh.scale.set(sca, scb, scc);    
         mesh.position.z = z;
         mesh.position.x = x;
@@ -285,8 +307,63 @@
         mesh.receiveShadow = true;
 		scene.add( mesh );
     }
-        
-        function road (x, y, z, ry, scx, scy) {
+    
+
+
+    //add traffic light
+    function handle_traffic(gltf) {
+        handle_load(gltf, -28, 0, -32, 0.007, mesh);
+    }
+    function handle_traffic1(gltf) {
+        handle_load(gltf, -28, 0, -12, 0.007, mesh);
+    }
+    function handle_traffic2(gltf) {
+        handle_load(gltf, -28, 0, 8, 0.007, mesh);
+    }
+    function handle_traffic3(gltf) {
+        handle_load(gltf, -28, 0, 28, 0.007, mesh);
+    }
+    function handle_traffic4(gltf) {
+        handle_load(gltf, -8, 0, -32, 0.007, mesh);
+    }
+    function handle_traffic5(gltf) {
+        handle_load(gltf, -8, 0, -12, 0.007, mesh);
+    }
+    function handle_traffic6(gltf) {
+        handle_load(gltf, -8, 0, 8, 0.007, mesh);
+    }
+    function handle_traffic7(gltf) {
+        handle_load(gltf, -8, 0, 28, 0.007, mesh);
+    }
+    function handle_traffic8(gltf) {
+        handle_load(gltf, 12, 0, -32, 0.007, mesh);
+    }
+    function handle_traffic9(gltf) {
+        handle_load(gltf, 12, 0, -12, 0.007, mesh);
+    }
+    function handle_traffic10(gltf) {
+        handle_load(gltf, 12, 0, 8, 0.007, mesh);
+    }
+    function handle_traffic11(gltf) {
+        handle_load(gltf, 12, 0, 28, 0.007, mesh);
+    }
+    function handle_traffic111(gltf) {
+        handle_load(gltf, 32, 0, -32, 0.007, mesh);
+    }
+    function handle_traffic1111(gltf) {
+        handle_load(gltf, 32, 0, -12, 0.007, mesh);
+    }
+    function handle_traffic11111(gltf) {
+        handle_load(gltf, 32, 0, 8, 0.007, mesh);
+    }
+    function handle_traffic111111(gltf) {
+        handle_load(gltf, 32, 0, 28, 0.007, mesh);
+    }
+
+
+
+
+    function road (x, y, z, ry, scx, scy) {
             var geometry = new THREE.PlaneGeometry( 6, 20, 0 );
             var material = new THREE.MeshPhongMaterial( {color: 0x202020, side: THREE.DoubleSide} );
             var plane2 = new THREE.Mesh( geometry, material );
