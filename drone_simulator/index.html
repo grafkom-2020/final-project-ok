@@ -1033,17 +1033,17 @@
                         break;
                     // Case YAW
                     case 37 : //arrowLeft
-                        camera.rotation.y = camera.rotation.y + yawMove;
+                        camera.rotation.y = camera.rotation.y + (Math.PI * yawMove);
                         break;
                     case 39 : //arrowRight
-                        camera.rotation.y = camera.rotation.y - yawMove;
+                        camera.rotation.y = camera.rotation.y - (Math.PI * yawMove);
                         break;
                     // Case PITCH
                     case 38 : //arrowUp
-                        camera.rotation.x = camera.rotation.x + yawMove;
+                        camera.rotation.x = camera.rotation.x + (Math.PI * yawMove);
                         break;
                     case 40 : //arrowDown
-                        camera.rotation.x = camera.rotation.x - yawMove;
+                        camera.rotation.x = camera.rotation.x - (Math.PI * yawMove);
                         break;
                 }
                 document.addEventListener('keyup',onDocumentKeyUp,false);
