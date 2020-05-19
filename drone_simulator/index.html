@@ -51,8 +51,9 @@
 
        //  camera.position.set(-20, 0.0099, 67.309);
         camera.position.set(0, 36, 82);
+        // camera.position.set(42, 36, 15);
        //  camera.position.set(-28.76, 3.66, -11.4); //kamera lihat kura kura
-        // camera.lookAt(new THREE.Vector3(-38, -5, 0)); 
+        // camera.lookAt(new THREE.Vector3(42, 0, -40)); 
         camera.lookAt(new THREE.Vector3(0,0,0)); 
 
         //SCENE
@@ -117,6 +118,10 @@
         loader.load('objects/pine_tree/scene.gltf', handle_tree111111);
         loader.load('objects/pine_tree/scene.gltf', handle_tree111111c);
         loader.load('objects/pine_tree/scene.gltf', handle_tree1111111);
+        loader.load('objects/pine_tree/scene.gltf', handle_treece);
+        loader.load('objects/pine_tree/scene.gltf', handle_treecee);
+        loader.load('objects/pine_tree/scene.gltf', handle_treeceee);
+        loader.load('objects/pine_tree/scene.gltf', handle_treeceeee);
         loader.load('objects/glb/tree_sheinna1.glb', handle_tree2);
         loader.load('objects/glb/tree_sheinna1.glb', handle_tree2e);
         loader.load('objects/glb/tree_sheinna1.glb', handle_tree2ee);
@@ -146,7 +151,13 @@
         loader.load('objects/simple_tree/scene.gltf', handle_tree6211);
         loader.load('objects/simple_tree/scene.gltf', handle_tree62111);
         loader.load('objects/simple_tree/scene.gltf', handle_tree621111);
+        loader.load('objects/simple_tree/scene.gltf', handle_tree62e);
+        loader.load('objects/simple_tree/scene.gltf', handle_tree62ee);
+        loader.load('objects/simple_tree/scene.gltf', handle_tree62eee);
         loader.load('objects/spruce_tree/scene.gltf', handle_tree7);
+        loader.load('objects/spruce_tree/scene.gltf', handle_tree7e);
+        loader.load('objects/spruce_tree/scene.gltf', handle_tree7ee);
+        loader.load('objects/spruce_tree/scene.gltf', handle_tree7eee);
         loader.load('objects/spruce_tree2/scene.gltf', handle_tree8);
         loader.load('objects/spruce_tree2/scene.gltf', handle_tree81);
         loader.load('objects/spruce_tree2/scene.gltf', handle_tree811);
@@ -233,12 +244,18 @@
         loader.load('objects/car/car1/scene.gltf', handle_car1);
         loader.load('objects/car/car1/scene.gltf', handle_car11);
         loader.load('objects/car/car1/scene.gltf', handle_car111);
+        loader.load('objects/car/car1/scene.gltf', handle_car1a);
+        loader.load('objects/car/car1/scene.gltf', handle_car1aa);
         loader.load('objects/car/cars.glb', handle_car2);
         loader.load('objects/car/cars.glb', handle_car21);
         loader.load('objects/car/cars.glb', handle_car211);
+        loader.load('objects/car/cars.glb', handle_car2a);
+        loader.load('objects/car/cars.glb', handle_car2aa);
         loader.load('objects/car/pemadam.glb', handle_car3);
         loader.load('objects/car/offroadcar.glb', handle_car4);
         loader.load('objects/car/offroadcar.glb', handle_car41);
+        loader.load('objects/car/offroadcar.glb', handle_car4a);
+        loader.load('objects/car/offroadcar.glb', handle_car4aa);
         loader.load('objects/yulia/bus.glb', handle_bus);
         loader.load('objects/yulia/bus.glb', handle_bus1);
         loader.load('objects/yulia/bus.glb', handle_bus11);
@@ -665,28 +682,28 @@
         }
     // Komplek 1e
         function handle_turtle(gltf) {
-            handle_load2(gltf, -36, 1, 42, 0, 10.6, 0.2, mesh);
+            handle_load2(gltf, -36, 0.5, 42, 0, 10.6, 0.2, mesh);
         }
         function handle_turtle2(gltf) {
-            handle_load2(gltf, -36, 1, 44, 0, 10.6, 0.2, mesh);
+            handle_load2(gltf, -36, 0.5, 44, 0, 10.6, 0.2, mesh);
         }
         function handle_turtle3(gltf) {
-            handle_load2(gltf, -37.3, 1, 43, 0, 1.6, 0.2, mesh);
+            handle_load2(gltf, -37.3, 0.5, 43, 0, 1.6, 0.2, mesh);
         }
         function handle_turtle4(gltf) {
-            handle_load2(gltf, -38, 1, 40, 0, 1.6, 0.1, mesh);
+            handle_load2(gltf, -38, 0.5, 40, 0, 1.6, 0.1, mesh);
         }
         function handle_turtle5(gltf) {
-            handle_load2(gltf, -37.5, 1, 45, 0, 10.6, 0.1, mesh);
+            handle_load2(gltf, -37.5, 0.5, 45, 0, 10.6, 0.1, mesh);
         }
         function handle_turtle6(gltf) {
-            handle_load2(gltf, -38.3, 1, 42, 0, 10.6, 0.1, mesh);
+            handle_load2(gltf, -38.3, 0.5, 42, 0, 10.6, 0.1, mesh);
         }
         function handle_turtle7(gltf) {
-            handle_load2(gltf, -37.3, 1, 41.5, 0, 10.6, 0.1, mesh);
+            handle_load2(gltf, -37.3, 0.5, 41.5, 0, 10.6, 0.1, mesh);
         }
         function handle_turtle8(gltf) {
-            handle_load2(gltf, -36.5, 1, 40, 0, 10.6, 0.2, mesh);
+            handle_load2(gltf, -36.5, 0.5, 40, 0, 10.6, 0.2, mesh);
         }
         function handle_pond(gltf) {
             handle_load2(gltf, -42.6, -16, 46, 0, 0, 0.7, mesh);
@@ -785,11 +802,33 @@
     ground( -20,  0.3,  18, 0.8, 0.5, 0.4, 0x2949494 );
 
     // Komplek 2e
-    function handle_build13(gltf) {
+        function handle_build13(gltf) {
             handle_load3(gltf, -20, 0.3, 40, 0, -Math.PI/2, 0, 0.25, 0.35, 0.25, mesh);
         }
         ground( -20,  0.2,  40, 0.6, 0.6, 0.1, 0x2F4F4F );
-        
+            
+        function handle_tree62e(gltf) {
+            handle_load(gltf, -25, +0, 35, 0.3, mesh);
+        }
+        function handle_tree62ee(gltf) {
+            handle_load(gltf, -20, +0, 35, 0.3, mesh);
+        }
+        function handle_tree62eee(gltf) {
+            handle_load(gltf, -15, +0, 35, 0.3, mesh);
+        }
+        function handle_treece(gltf) {
+            handle_load(gltf, -26, -0.3, 40, 0.7, mesh);
+        }
+        function handle_treecee(gltf) {
+            handle_load(gltf, -26, -0.3, 45, 0.7, mesh);
+        }
+        function handle_treeceee(gltf) {
+            handle_load(gltf, -14, -0.3, 40, 0.7, mesh);
+        }
+        function handle_treeceeee(gltf) {
+            handle_load(gltf, -14, -0.3, 45, 0.7, mesh);
+        }
+
     // Komplek 3a
     function handle_build3(gltf) {
             handle_load2(gltf, 40, 0.2, 0, 0, Math.PI/2 , 0.0001, mesh);
@@ -850,21 +889,31 @@
         
     // Komplek 3d
     function handle_hospital(gltf){
-            handle_load2(gltf, -2, 5, 20, 0, 0, 0.2, mesh);
+        handle_load2(gltf, -2, 5, 20, 0, 0, 0.2, mesh);
     }
     function handle_car21(gltf) {
-            handle_load(gltf, 2, -1.3, 25, 0.5, mesh);
-        }
+        handle_load(gltf, 2, -1.3, 25, 0.5, mesh);
+    }
     function handle_car211(gltf) {
         handle_load(gltf, 4, -1.3, 25, 0.5, mesh);
     }
 
     // Komplek 3e
     function handle_builda3(gltf) {
-        handle_load2(gltf, 7.4, 2, 10, -0.03, 0, 120, mesh);
+        handle_load2(gltf, 7.4, 2, 12, -0.03, 0, 120, mesh);
     }
-    ground(  0,  0.3,  40, 0.7, 0.5, 0.4, 0x2a6002 );
-      
+    ground(  0,  0.3,  42, 0.7, 0.5, 0.4, 0x2a6002 );
+
+    function handle_tree7e(gltf) {
+        handle_load(gltf, -4, +0, 36.4, 0.5, mesh);
+    } 
+    function handle_tree7ee(gltf) {
+        handle_load(gltf, 0, +0, 36.4, 0.5, mesh);
+    } 
+    function handle_tree7eee(gltf) {
+        handle_load(gltf, 4, +0, 36.4, 0.5, mesh);
+    } 
+
     // Komplek 4a
     // Komplek 4b
     // Komplek 4c
@@ -931,10 +980,27 @@
         
 
     // Komplek 5a
-    
         function handle_tower_house(gltf) {
-            handle_load(gltf, 39, 0, -40, 0.7, mesh);
+            handle_load(gltf, 40, 0, -40, 0.7, mesh);
         } 
+        function handle_car2a(gltf) {
+            handle_load(gltf, 35, -1, -40, 0.5, mesh);
+        }
+        function handle_car2aa(gltf) {
+            handle_load(gltf, 37, -1, -40, 0.5, mesh);
+        }
+        function handle_car1a(gltf) {
+            handle_load2(gltf, 33.8, 0, -35, 0, 0,  0.8, mesh);
+        }
+        function handle_car1aa(gltf) {
+            handle_load2(gltf, 35.8, 0, -35, 0, 0,  0.8, mesh);
+        }
+        function handle_car4a(gltf) {
+            handle_load2(gltf, 34, 0.5, -45, 0, Math.PI/2,  0.005, mesh);
+        }
+        function handle_car4aa(gltf) {
+            handle_load2(gltf, 36, 0.5, -45, 0, Math.PI/2,  0.005, mesh);
+        }
     // Komplek 5b
         function handle_tree7(gltf) {
             handle_load(gltf, 35, +0, -15, 0.7, mesh);
@@ -1052,10 +1118,6 @@
             function onDocumentKeyUp(event){
                 document.removeEventListener('keydown',onDocumentKeyDown,false);
             }
-            // if (mesh) mesh.rotation.y += 0.01;
-            // if (mesh2) mesh2.rotation.y += 0.01;
-            // if (mesh3) mesh3.rotation.y += 0.01;
-            // if (bench_mesh) bench_mesh.rotation.y += 0.01;
             if(car_mesh) {
                 if(car_mesh.position.z <= plane.position.z - 48) {
                     car_mesh.rotation.y = Math.PI;
